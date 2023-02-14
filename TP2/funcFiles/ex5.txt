@@ -1,0 +1,20 @@
+DECLARATIONS{
+    ArrayInt a[10];
+    int i, j, store;
+}
+BEGIN
+i = 0;
+
+WHILE(i < 10) {
+    write("Insira um numero");
+    store = read();
+    a[i] = store;
+    i = i + 1;
+}
+
+i = i - 1;
+WHILE( i >= 0 ){
+    write(a[i]);
+    i = i - 1;
+}
+END

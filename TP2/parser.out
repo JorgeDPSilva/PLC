@@ -1,0 +1,2794 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> LstPrograms
+Rule 1     LstPrograms -> Program
+Rule 2     LstPrograms -> LstPrograms Program
+Rule 3     Program -> DECLARATIONS LCURLY LstDecl RCURLY Fs BEGIN LstInst END
+Rule 4     LstDecl -> Decl
+Rule 5     LstDecl -> Decl LstDecl
+Rule 6     Decl -> IntWord Variables PONTeVIR
+Rule 7     Decl -> ArrayInt Variables PONTeVIR
+Rule 8     Variables -> Var VIR Variables
+Rule 9     Variables -> Var
+Rule 10    Var -> ID
+Rule 11    Var -> ID LSQUARE NINT RSQUARE
+Rule 12    Fs -> <empty>
+Rule 13    Fs -> FUNCTIONS DOLLAR LstFunct DOLLAR
+Rule 14    LstFunct -> Func
+Rule 15    LstFunct -> LstFunct Func
+Rule 16    Func -> DEF FUNC_NAME LCURLY LstInst RETURN ID PONTeVIR RCURLY
+Rule 17    LstInst -> Instruction
+Rule 18    LstInst -> LstInst Instruction
+Rule 19    Instruction -> Atrib
+Rule 20    Instruction -> Function
+Rule 21    Instruction -> ifStatement
+Rule 22    Instruction -> Loop
+Rule 23    Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+Rule 24    Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+Rule 25    ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+Rule 26    ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+Rule 27    Atrib -> ID ASSIGN Expr PONTeVIR
+Rule 28    Atrib -> ID PLUSEQ Expr PONTeVIR
+Rule 29    Atrib -> ID MINUSEQ Expr PONTeVIR
+Rule 30    Atrib -> ID MULTEQ Expr PONTeVIR
+Rule 31    Atrib -> ID DIVEQ Expr PONTeVIR
+Rule 32    Atrib -> ID MODEQ Expr PONTeVIR
+Rule 33    Atrib -> ID PLUSPLUS PONTeVIR
+Rule 34    Atrib -> ID MINUSMINUS PONTeVIR
+Rule 35    Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+Rule 36    Function -> WRITE LROUND PHRASE RROUND PONTeVIR
+Rule 37    Function -> WRITE LROUND ExprR RROUND PONTeVIR
+Rule 38    Condition -> ExprR
+Rule 39    Condition -> ExprR AND Condition
+Rule 40    Condition -> ExprR OR Condition
+Rule 41    ExprR -> Expr
+Rule 42    ExprR -> Expr EQEQ Expr
+Rule 43    ExprR -> Expr NEQ Expr
+Rule 44    ExprR -> Expr LT Expr
+Rule 45    ExprR -> Expr LE Expr
+Rule 46    ExprR -> Expr GT Expr
+Rule 47    ExprR -> Expr GE Expr
+Rule 48    Expr -> Term
+Rule 49    Expr -> Expr PLUS Term
+Rule 50    Expr -> Expr MINUS Term
+Rule 51    Term -> Factor
+Rule 52    Term -> Term MULT Factor
+Rule 53    Term -> Term DIV Factor
+Rule 54    Term -> Term MOD Factor
+Rule 55    Factor -> ID
+Rule 56    Factor -> NINT
+Rule 57    Factor -> LROUND MINUS NINT RROUND
+Rule 58    Factor -> READ LROUND RROUND
+Rule 59    Factor -> FUNC_NAME
+Rule 60    Factor -> ID LSQUARE NINT RSQUARE
+Rule 61    Factor -> ID LSQUARE ID RSQUARE
+
+Terminals, with rules where they appear
+
+AND                  : 39
+ASSIGN               : 27 35
+ArrayInt             : 7
+BEGIN                : 3
+DECLARATIONS         : 3
+DEF                  : 16
+DIV                  : 53
+DIVEQ                : 31
+DOLLAR               : 13 13
+ELSE                 : 26
+END                  : 3
+EQEQ                 : 42
+FOR                  : 24
+FUNCTIONS            : 13
+FUNC_NAME            : 16 59
+GE                   : 47
+GT                   : 46
+ID                   : 10 11 16 27 28 29 30 31 32 33 34 35 55 60 61 61
+IF                   : 25 26
+IntWord              : 6
+LCURLY               : 3 16 23 24 25 26 26
+LE                   : 45
+LROUND               : 23 24 25 26 36 37 57 58
+LSQUARE              : 11 35 60 61
+LT                   : 44
+MINUS                : 50 57
+MINUSEQ              : 29
+MINUSMINUS           : 34
+MOD                  : 54
+MODEQ                : 32
+MULT                 : 52
+MULTEQ               : 30
+NEQ                  : 43
+NINT                 : 11 56 57 60
+OR                   : 40
+PHRASE               : 36
+PLUS                 : 49
+PLUSEQ               : 28
+PLUSPLUS             : 33
+PONTeVIR             : 6 7 16 27 28 29 30 31 32 33 34 35 36 37
+RCURLY               : 3 16 23 24 25 26 26
+READ                 : 58
+RETURN               : 16
+RROUND               : 23 24 25 26 36 37 57 58
+RSQUARE              : 11 35 60 61
+THEN                 : 25 26
+VIR                  : 8
+WHILE                : 23
+WRITE                : 36 37
+error                : 
+
+Nonterminals, with rules where they appear
+
+Atrib                : 19 24 24
+Condition            : 23 24 25 26 39 40
+Decl                 : 4 5
+Expr                 : 27 28 29 30 31 32 35 41 42 42 43 43 44 44 45 45 46 46 47 47 49 50
+ExprR                : 35 37 38 39 40
+Factor               : 51 52 53 54
+Fs                   : 3
+Func                 : 14 15
+Function             : 20
+Instruction          : 17 18
+Loop                 : 22
+LstDecl              : 3 5
+LstFunct             : 13 15
+LstInst              : 3 16 18 23 24 25 26 26
+LstPrograms          : 2 0
+Program              : 1 2
+Term                 : 48 49 50 52 53 54
+Var                  : 8 9
+Variables            : 6 7 8
+ifStatement          : 21
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . LstPrograms
+    (1) LstPrograms -> . Program
+    (2) LstPrograms -> . LstPrograms Program
+    (3) Program -> . DECLARATIONS LCURLY LstDecl RCURLY Fs BEGIN LstInst END
+
+    DECLARATIONS    shift and go to state 3
+
+    LstPrograms                    shift and go to state 1
+    Program                        shift and go to state 2
+
+state 1
+
+    (0) S' -> LstPrograms .
+    (2) LstPrograms -> LstPrograms . Program
+    (3) Program -> . DECLARATIONS LCURLY LstDecl RCURLY Fs BEGIN LstInst END
+
+    DECLARATIONS    shift and go to state 3
+
+    Program                        shift and go to state 4
+
+state 2
+
+    (1) LstPrograms -> Program .
+
+    DECLARATIONS    reduce using rule 1 (LstPrograms -> Program .)
+    $end            reduce using rule 1 (LstPrograms -> Program .)
+
+
+state 3
+
+    (3) Program -> DECLARATIONS . LCURLY LstDecl RCURLY Fs BEGIN LstInst END
+
+    LCURLY          shift and go to state 5
+
+
+state 4
+
+    (2) LstPrograms -> LstPrograms Program .
+
+    DECLARATIONS    reduce using rule 2 (LstPrograms -> LstPrograms Program .)
+    $end            reduce using rule 2 (LstPrograms -> LstPrograms Program .)
+
+
+state 5
+
+    (3) Program -> DECLARATIONS LCURLY . LstDecl RCURLY Fs BEGIN LstInst END
+    (4) LstDecl -> . Decl
+    (5) LstDecl -> . Decl LstDecl
+    (6) Decl -> . IntWord Variables PONTeVIR
+    (7) Decl -> . ArrayInt Variables PONTeVIR
+
+    IntWord         shift and go to state 8
+    ArrayInt        shift and go to state 9
+
+    LstDecl                        shift and go to state 6
+    Decl                           shift and go to state 7
+
+state 6
+
+    (3) Program -> DECLARATIONS LCURLY LstDecl . RCURLY Fs BEGIN LstInst END
+
+    RCURLY          shift and go to state 10
+
+
+state 7
+
+    (4) LstDecl -> Decl .
+    (5) LstDecl -> Decl . LstDecl
+    (4) LstDecl -> . Decl
+    (5) LstDecl -> . Decl LstDecl
+    (6) Decl -> . IntWord Variables PONTeVIR
+    (7) Decl -> . ArrayInt Variables PONTeVIR
+
+    RCURLY          reduce using rule 4 (LstDecl -> Decl .)
+    IntWord         shift and go to state 8
+    ArrayInt        shift and go to state 9
+
+    Decl                           shift and go to state 7
+    LstDecl                        shift and go to state 11
+
+state 8
+
+    (6) Decl -> IntWord . Variables PONTeVIR
+    (8) Variables -> . Var VIR Variables
+    (9) Variables -> . Var
+    (10) Var -> . ID
+    (11) Var -> . ID LSQUARE NINT RSQUARE
+
+    ID              shift and go to state 14
+
+    Variables                      shift and go to state 12
+    Var                            shift and go to state 13
+
+state 9
+
+    (7) Decl -> ArrayInt . Variables PONTeVIR
+    (8) Variables -> . Var VIR Variables
+    (9) Variables -> . Var
+    (10) Var -> . ID
+    (11) Var -> . ID LSQUARE NINT RSQUARE
+
+    ID              shift and go to state 14
+
+    Variables                      shift and go to state 15
+    Var                            shift and go to state 13
+
+state 10
+
+    (3) Program -> DECLARATIONS LCURLY LstDecl RCURLY . Fs BEGIN LstInst END
+    (12) Fs -> .
+    (13) Fs -> . FUNCTIONS DOLLAR LstFunct DOLLAR
+
+    BEGIN           reduce using rule 12 (Fs -> .)
+    FUNCTIONS       shift and go to state 17
+
+    Fs                             shift and go to state 16
+
+state 11
+
+    (5) LstDecl -> Decl LstDecl .
+
+    RCURLY          reduce using rule 5 (LstDecl -> Decl LstDecl .)
+
+
+state 12
+
+    (6) Decl -> IntWord Variables . PONTeVIR
+
+    PONTeVIR        shift and go to state 18
+
+
+state 13
+
+    (8) Variables -> Var . VIR Variables
+    (9) Variables -> Var .
+
+    VIR             shift and go to state 19
+    PONTeVIR        reduce using rule 9 (Variables -> Var .)
+
+
+state 14
+
+    (10) Var -> ID .
+    (11) Var -> ID . LSQUARE NINT RSQUARE
+
+    VIR             reduce using rule 10 (Var -> ID .)
+    PONTeVIR        reduce using rule 10 (Var -> ID .)
+    LSQUARE         shift and go to state 20
+
+
+state 15
+
+    (7) Decl -> ArrayInt Variables . PONTeVIR
+
+    PONTeVIR        shift and go to state 21
+
+
+state 16
+
+    (3) Program -> DECLARATIONS LCURLY LstDecl RCURLY Fs . BEGIN LstInst END
+
+    BEGIN           shift and go to state 22
+
+
+state 17
+
+    (13) Fs -> FUNCTIONS . DOLLAR LstFunct DOLLAR
+
+    DOLLAR          shift and go to state 23
+
+
+state 18
+
+    (6) Decl -> IntWord Variables PONTeVIR .
+
+    IntWord         reduce using rule 6 (Decl -> IntWord Variables PONTeVIR .)
+    ArrayInt        reduce using rule 6 (Decl -> IntWord Variables PONTeVIR .)
+    RCURLY          reduce using rule 6 (Decl -> IntWord Variables PONTeVIR .)
+
+
+state 19
+
+    (8) Variables -> Var VIR . Variables
+    (8) Variables -> . Var VIR Variables
+    (9) Variables -> . Var
+    (10) Var -> . ID
+    (11) Var -> . ID LSQUARE NINT RSQUARE
+
+    ID              shift and go to state 14
+
+    Var                            shift and go to state 13
+    Variables                      shift and go to state 24
+
+state 20
+
+    (11) Var -> ID LSQUARE . NINT RSQUARE
+
+    NINT            shift and go to state 25
+
+
+state 21
+
+    (7) Decl -> ArrayInt Variables PONTeVIR .
+
+    IntWord         reduce using rule 7 (Decl -> ArrayInt Variables PONTeVIR .)
+    ArrayInt        reduce using rule 7 (Decl -> ArrayInt Variables PONTeVIR .)
+    RCURLY          reduce using rule 7 (Decl -> ArrayInt Variables PONTeVIR .)
+
+
+state 22
+
+    (3) Program -> DECLARATIONS LCURLY LstDecl RCURLY Fs BEGIN . LstInst END
+    (17) LstInst -> . Instruction
+    (18) LstInst -> . LstInst Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    LstInst                        shift and go to state 26
+    Instruction                    shift and go to state 27
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 23
+
+    (13) Fs -> FUNCTIONS DOLLAR . LstFunct DOLLAR
+    (14) LstFunct -> . Func
+    (15) LstFunct -> . LstFunct Func
+    (16) Func -> . DEF FUNC_NAME LCURLY LstInst RETURN ID PONTeVIR RCURLY
+
+    DEF             shift and go to state 39
+
+    LstFunct                       shift and go to state 37
+    Func                           shift and go to state 38
+
+state 24
+
+    (8) Variables -> Var VIR Variables .
+
+    PONTeVIR        reduce using rule 8 (Variables -> Var VIR Variables .)
+
+
+state 25
+
+    (11) Var -> ID LSQUARE NINT . RSQUARE
+
+    RSQUARE         shift and go to state 40
+
+
+state 26
+
+    (3) Program -> DECLARATIONS LCURLY LstDecl RCURLY Fs BEGIN LstInst . END
+    (18) LstInst -> LstInst . Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    END             shift and go to state 41
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    Instruction                    shift and go to state 42
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 27
+
+    (17) LstInst -> Instruction .
+
+    END             reduce using rule 17 (LstInst -> Instruction .)
+    ID              reduce using rule 17 (LstInst -> Instruction .)
+    WRITE           reduce using rule 17 (LstInst -> Instruction .)
+    IF              reduce using rule 17 (LstInst -> Instruction .)
+    WHILE           reduce using rule 17 (LstInst -> Instruction .)
+    FOR             reduce using rule 17 (LstInst -> Instruction .)
+    RETURN          reduce using rule 17 (LstInst -> Instruction .)
+    RCURLY          reduce using rule 17 (LstInst -> Instruction .)
+
+
+state 28
+
+    (19) Instruction -> Atrib .
+
+    END             reduce using rule 19 (Instruction -> Atrib .)
+    ID              reduce using rule 19 (Instruction -> Atrib .)
+    WRITE           reduce using rule 19 (Instruction -> Atrib .)
+    IF              reduce using rule 19 (Instruction -> Atrib .)
+    WHILE           reduce using rule 19 (Instruction -> Atrib .)
+    FOR             reduce using rule 19 (Instruction -> Atrib .)
+    RETURN          reduce using rule 19 (Instruction -> Atrib .)
+    RCURLY          reduce using rule 19 (Instruction -> Atrib .)
+
+
+state 29
+
+    (20) Instruction -> Function .
+
+    END             reduce using rule 20 (Instruction -> Function .)
+    ID              reduce using rule 20 (Instruction -> Function .)
+    WRITE           reduce using rule 20 (Instruction -> Function .)
+    IF              reduce using rule 20 (Instruction -> Function .)
+    WHILE           reduce using rule 20 (Instruction -> Function .)
+    FOR             reduce using rule 20 (Instruction -> Function .)
+    RETURN          reduce using rule 20 (Instruction -> Function .)
+    RCURLY          reduce using rule 20 (Instruction -> Function .)
+
+
+state 30
+
+    (21) Instruction -> ifStatement .
+
+    END             reduce using rule 21 (Instruction -> ifStatement .)
+    ID              reduce using rule 21 (Instruction -> ifStatement .)
+    WRITE           reduce using rule 21 (Instruction -> ifStatement .)
+    IF              reduce using rule 21 (Instruction -> ifStatement .)
+    WHILE           reduce using rule 21 (Instruction -> ifStatement .)
+    FOR             reduce using rule 21 (Instruction -> ifStatement .)
+    RETURN          reduce using rule 21 (Instruction -> ifStatement .)
+    RCURLY          reduce using rule 21 (Instruction -> ifStatement .)
+
+
+state 31
+
+    (22) Instruction -> Loop .
+
+    END             reduce using rule 22 (Instruction -> Loop .)
+    ID              reduce using rule 22 (Instruction -> Loop .)
+    WRITE           reduce using rule 22 (Instruction -> Loop .)
+    IF              reduce using rule 22 (Instruction -> Loop .)
+    WHILE           reduce using rule 22 (Instruction -> Loop .)
+    FOR             reduce using rule 22 (Instruction -> Loop .)
+    RETURN          reduce using rule 22 (Instruction -> Loop .)
+    RCURLY          reduce using rule 22 (Instruction -> Loop .)
+
+
+state 32
+
+    (27) Atrib -> ID . ASSIGN Expr PONTeVIR
+    (28) Atrib -> ID . PLUSEQ Expr PONTeVIR
+    (29) Atrib -> ID . MINUSEQ Expr PONTeVIR
+    (30) Atrib -> ID . MULTEQ Expr PONTeVIR
+    (31) Atrib -> ID . DIVEQ Expr PONTeVIR
+    (32) Atrib -> ID . MODEQ Expr PONTeVIR
+    (33) Atrib -> ID . PLUSPLUS PONTeVIR
+    (34) Atrib -> ID . MINUSMINUS PONTeVIR
+    (35) Atrib -> ID . LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+
+    ASSIGN          shift and go to state 43
+    PLUSEQ          shift and go to state 44
+    MINUSEQ         shift and go to state 45
+    MULTEQ          shift and go to state 46
+    DIVEQ           shift and go to state 47
+    MODEQ           shift and go to state 48
+    PLUSPLUS        shift and go to state 49
+    MINUSMINUS      shift and go to state 50
+    LSQUARE         shift and go to state 51
+
+
+state 33
+
+    (36) Function -> WRITE . LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> WRITE . LROUND ExprR RROUND PONTeVIR
+
+    LROUND          shift and go to state 52
+
+
+state 34
+
+    (25) ifStatement -> IF . LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> IF . LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+
+    LROUND          shift and go to state 53
+
+
+state 35
+
+    (23) Loop -> WHILE . LROUND Condition RROUND LCURLY LstInst RCURLY
+
+    LROUND          shift and go to state 54
+
+
+state 36
+
+    (24) Loop -> FOR . LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    LROUND          shift and go to state 55
+
+
+state 37
+
+    (13) Fs -> FUNCTIONS DOLLAR LstFunct . DOLLAR
+    (15) LstFunct -> LstFunct . Func
+    (16) Func -> . DEF FUNC_NAME LCURLY LstInst RETURN ID PONTeVIR RCURLY
+
+    DOLLAR          shift and go to state 56
+    DEF             shift and go to state 39
+
+    Func                           shift and go to state 57
+
+state 38
+
+    (14) LstFunct -> Func .
+
+    DOLLAR          reduce using rule 14 (LstFunct -> Func .)
+    DEF             reduce using rule 14 (LstFunct -> Func .)
+
+
+state 39
+
+    (16) Func -> DEF . FUNC_NAME LCURLY LstInst RETURN ID PONTeVIR RCURLY
+
+    FUNC_NAME       shift and go to state 58
+
+
+state 40
+
+    (11) Var -> ID LSQUARE NINT RSQUARE .
+
+    VIR             reduce using rule 11 (Var -> ID LSQUARE NINT RSQUARE .)
+    PONTeVIR        reduce using rule 11 (Var -> ID LSQUARE NINT RSQUARE .)
+
+
+state 41
+
+    (3) Program -> DECLARATIONS LCURLY LstDecl RCURLY Fs BEGIN LstInst END .
+
+    DECLARATIONS    reduce using rule 3 (Program -> DECLARATIONS LCURLY LstDecl RCURLY Fs BEGIN LstInst END .)
+    $end            reduce using rule 3 (Program -> DECLARATIONS LCURLY LstDecl RCURLY Fs BEGIN LstInst END .)
+
+
+state 42
+
+    (18) LstInst -> LstInst Instruction .
+
+    END             reduce using rule 18 (LstInst -> LstInst Instruction .)
+    ID              reduce using rule 18 (LstInst -> LstInst Instruction .)
+    WRITE           reduce using rule 18 (LstInst -> LstInst Instruction .)
+    IF              reduce using rule 18 (LstInst -> LstInst Instruction .)
+    WHILE           reduce using rule 18 (LstInst -> LstInst Instruction .)
+    FOR             reduce using rule 18 (LstInst -> LstInst Instruction .)
+    RETURN          reduce using rule 18 (LstInst -> LstInst Instruction .)
+    RCURLY          reduce using rule 18 (LstInst -> LstInst Instruction .)
+
+
+state 43
+
+    (27) Atrib -> ID ASSIGN . Expr PONTeVIR
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 60
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 44
+
+    (28) Atrib -> ID PLUSEQ . Expr PONTeVIR
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 67
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 45
+
+    (29) Atrib -> ID MINUSEQ . Expr PONTeVIR
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 68
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 46
+
+    (30) Atrib -> ID MULTEQ . Expr PONTeVIR
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 69
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 47
+
+    (31) Atrib -> ID DIVEQ . Expr PONTeVIR
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 70
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 48
+
+    (32) Atrib -> ID MODEQ . Expr PONTeVIR
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 71
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 49
+
+    (33) Atrib -> ID PLUSPLUS . PONTeVIR
+
+    PONTeVIR        shift and go to state 72
+
+
+state 50
+
+    (34) Atrib -> ID MINUSMINUS . PONTeVIR
+
+    PONTeVIR        shift and go to state 73
+
+
+state 51
+
+    (35) Atrib -> ID LSQUARE . Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 74
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 52
+
+    (36) Function -> WRITE LROUND . PHRASE RROUND PONTeVIR
+    (37) Function -> WRITE LROUND . ExprR RROUND PONTeVIR
+    (41) ExprR -> . Expr
+    (42) ExprR -> . Expr EQEQ Expr
+    (43) ExprR -> . Expr NEQ Expr
+    (44) ExprR -> . Expr LT Expr
+    (45) ExprR -> . Expr LE Expr
+    (46) ExprR -> . Expr GT Expr
+    (47) ExprR -> . Expr GE Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    PHRASE          shift and go to state 75
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    ExprR                          shift and go to state 76
+    Expr                           shift and go to state 77
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 53
+
+    (25) ifStatement -> IF LROUND . Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> IF LROUND . Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (38) Condition -> . ExprR
+    (39) Condition -> . ExprR AND Condition
+    (40) Condition -> . ExprR OR Condition
+    (41) ExprR -> . Expr
+    (42) ExprR -> . Expr EQEQ Expr
+    (43) ExprR -> . Expr NEQ Expr
+    (44) ExprR -> . Expr LT Expr
+    (45) ExprR -> . Expr LE Expr
+    (46) ExprR -> . Expr GT Expr
+    (47) ExprR -> . Expr GE Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Condition                      shift and go to state 78
+    ExprR                          shift and go to state 79
+    Expr                           shift and go to state 77
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 54
+
+    (23) Loop -> WHILE LROUND . Condition RROUND LCURLY LstInst RCURLY
+    (38) Condition -> . ExprR
+    (39) Condition -> . ExprR AND Condition
+    (40) Condition -> . ExprR OR Condition
+    (41) ExprR -> . Expr
+    (42) ExprR -> . Expr EQEQ Expr
+    (43) ExprR -> . Expr NEQ Expr
+    (44) ExprR -> . Expr LT Expr
+    (45) ExprR -> . Expr LE Expr
+    (46) ExprR -> . Expr GT Expr
+    (47) ExprR -> . Expr GE Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Condition                      shift and go to state 80
+    ExprR                          shift and go to state 79
+    Expr                           shift and go to state 77
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 55
+
+    (24) Loop -> FOR LROUND . Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+
+    ID              shift and go to state 32
+
+    Atrib                          shift and go to state 81
+
+state 56
+
+    (13) Fs -> FUNCTIONS DOLLAR LstFunct DOLLAR .
+
+    BEGIN           reduce using rule 13 (Fs -> FUNCTIONS DOLLAR LstFunct DOLLAR .)
+
+
+state 57
+
+    (15) LstFunct -> LstFunct Func .
+
+    DOLLAR          reduce using rule 15 (LstFunct -> LstFunct Func .)
+    DEF             reduce using rule 15 (LstFunct -> LstFunct Func .)
+
+
+state 58
+
+    (16) Func -> DEF FUNC_NAME . LCURLY LstInst RETURN ID PONTeVIR RCURLY
+
+    LCURLY          shift and go to state 82
+
+
+state 59
+
+    (55) Factor -> ID .
+    (60) Factor -> ID . LSQUARE NINT RSQUARE
+    (61) Factor -> ID . LSQUARE ID RSQUARE
+
+    MULT            reduce using rule 55 (Factor -> ID .)
+    DIV             reduce using rule 55 (Factor -> ID .)
+    MOD             reduce using rule 55 (Factor -> ID .)
+    PONTeVIR        reduce using rule 55 (Factor -> ID .)
+    PLUS            reduce using rule 55 (Factor -> ID .)
+    MINUS           reduce using rule 55 (Factor -> ID .)
+    RSQUARE         reduce using rule 55 (Factor -> ID .)
+    EQEQ            reduce using rule 55 (Factor -> ID .)
+    NEQ             reduce using rule 55 (Factor -> ID .)
+    LT              reduce using rule 55 (Factor -> ID .)
+    LE              reduce using rule 55 (Factor -> ID .)
+    GT              reduce using rule 55 (Factor -> ID .)
+    GE              reduce using rule 55 (Factor -> ID .)
+    RROUND          reduce using rule 55 (Factor -> ID .)
+    AND             reduce using rule 55 (Factor -> ID .)
+    OR              reduce using rule 55 (Factor -> ID .)
+    LSQUARE         shift and go to state 83
+
+
+state 60
+
+    (27) Atrib -> ID ASSIGN Expr . PONTeVIR
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    PONTeVIR        shift and go to state 84
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 61
+
+    (48) Expr -> Term .
+    (52) Term -> Term . MULT Factor
+    (53) Term -> Term . DIV Factor
+    (54) Term -> Term . MOD Factor
+
+    PONTeVIR        reduce using rule 48 (Expr -> Term .)
+    PLUS            reduce using rule 48 (Expr -> Term .)
+    MINUS           reduce using rule 48 (Expr -> Term .)
+    RSQUARE         reduce using rule 48 (Expr -> Term .)
+    EQEQ            reduce using rule 48 (Expr -> Term .)
+    NEQ             reduce using rule 48 (Expr -> Term .)
+    LT              reduce using rule 48 (Expr -> Term .)
+    LE              reduce using rule 48 (Expr -> Term .)
+    GT              reduce using rule 48 (Expr -> Term .)
+    GE              reduce using rule 48 (Expr -> Term .)
+    RROUND          reduce using rule 48 (Expr -> Term .)
+    AND             reduce using rule 48 (Expr -> Term .)
+    OR              reduce using rule 48 (Expr -> Term .)
+    MULT            shift and go to state 87
+    DIV             shift and go to state 88
+    MOD             shift and go to state 89
+
+
+state 62
+
+    (51) Term -> Factor .
+
+    MULT            reduce using rule 51 (Term -> Factor .)
+    DIV             reduce using rule 51 (Term -> Factor .)
+    MOD             reduce using rule 51 (Term -> Factor .)
+    PONTeVIR        reduce using rule 51 (Term -> Factor .)
+    PLUS            reduce using rule 51 (Term -> Factor .)
+    MINUS           reduce using rule 51 (Term -> Factor .)
+    RSQUARE         reduce using rule 51 (Term -> Factor .)
+    EQEQ            reduce using rule 51 (Term -> Factor .)
+    NEQ             reduce using rule 51 (Term -> Factor .)
+    LT              reduce using rule 51 (Term -> Factor .)
+    LE              reduce using rule 51 (Term -> Factor .)
+    GT              reduce using rule 51 (Term -> Factor .)
+    GE              reduce using rule 51 (Term -> Factor .)
+    RROUND          reduce using rule 51 (Term -> Factor .)
+    AND             reduce using rule 51 (Term -> Factor .)
+    OR              reduce using rule 51 (Term -> Factor .)
+
+
+state 63
+
+    (56) Factor -> NINT .
+
+    MULT            reduce using rule 56 (Factor -> NINT .)
+    DIV             reduce using rule 56 (Factor -> NINT .)
+    MOD             reduce using rule 56 (Factor -> NINT .)
+    PONTeVIR        reduce using rule 56 (Factor -> NINT .)
+    PLUS            reduce using rule 56 (Factor -> NINT .)
+    MINUS           reduce using rule 56 (Factor -> NINT .)
+    RSQUARE         reduce using rule 56 (Factor -> NINT .)
+    EQEQ            reduce using rule 56 (Factor -> NINT .)
+    NEQ             reduce using rule 56 (Factor -> NINT .)
+    LT              reduce using rule 56 (Factor -> NINT .)
+    LE              reduce using rule 56 (Factor -> NINT .)
+    GT              reduce using rule 56 (Factor -> NINT .)
+    GE              reduce using rule 56 (Factor -> NINT .)
+    RROUND          reduce using rule 56 (Factor -> NINT .)
+    AND             reduce using rule 56 (Factor -> NINT .)
+    OR              reduce using rule 56 (Factor -> NINT .)
+
+
+state 64
+
+    (57) Factor -> LROUND . MINUS NINT RROUND
+
+    MINUS           shift and go to state 90
+
+
+state 65
+
+    (58) Factor -> READ . LROUND RROUND
+
+    LROUND          shift and go to state 91
+
+
+state 66
+
+    (59) Factor -> FUNC_NAME .
+
+    MULT            reduce using rule 59 (Factor -> FUNC_NAME .)
+    DIV             reduce using rule 59 (Factor -> FUNC_NAME .)
+    MOD             reduce using rule 59 (Factor -> FUNC_NAME .)
+    PONTeVIR        reduce using rule 59 (Factor -> FUNC_NAME .)
+    PLUS            reduce using rule 59 (Factor -> FUNC_NAME .)
+    MINUS           reduce using rule 59 (Factor -> FUNC_NAME .)
+    RSQUARE         reduce using rule 59 (Factor -> FUNC_NAME .)
+    EQEQ            reduce using rule 59 (Factor -> FUNC_NAME .)
+    NEQ             reduce using rule 59 (Factor -> FUNC_NAME .)
+    LT              reduce using rule 59 (Factor -> FUNC_NAME .)
+    LE              reduce using rule 59 (Factor -> FUNC_NAME .)
+    GT              reduce using rule 59 (Factor -> FUNC_NAME .)
+    GE              reduce using rule 59 (Factor -> FUNC_NAME .)
+    RROUND          reduce using rule 59 (Factor -> FUNC_NAME .)
+    AND             reduce using rule 59 (Factor -> FUNC_NAME .)
+    OR              reduce using rule 59 (Factor -> FUNC_NAME .)
+
+
+state 67
+
+    (28) Atrib -> ID PLUSEQ Expr . PONTeVIR
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    PONTeVIR        shift and go to state 92
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 68
+
+    (29) Atrib -> ID MINUSEQ Expr . PONTeVIR
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    PONTeVIR        shift and go to state 93
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 69
+
+    (30) Atrib -> ID MULTEQ Expr . PONTeVIR
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    PONTeVIR        shift and go to state 94
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 70
+
+    (31) Atrib -> ID DIVEQ Expr . PONTeVIR
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    PONTeVIR        shift and go to state 95
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 71
+
+    (32) Atrib -> ID MODEQ Expr . PONTeVIR
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    PONTeVIR        shift and go to state 96
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 72
+
+    (33) Atrib -> ID PLUSPLUS PONTeVIR .
+
+    END             reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    ID              reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    WRITE           reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    IF              reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    WHILE           reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    FOR             reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    NINT            reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    LROUND          reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    READ            reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    FUNC_NAME       reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    RETURN          reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+    RCURLY          reduce using rule 33 (Atrib -> ID PLUSPLUS PONTeVIR .)
+
+
+state 73
+
+    (34) Atrib -> ID MINUSMINUS PONTeVIR .
+
+    END             reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    ID              reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    WRITE           reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    IF              reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    WHILE           reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    FOR             reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    NINT            reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    LROUND          reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    READ            reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    FUNC_NAME       reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    RETURN          reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+    RCURLY          reduce using rule 34 (Atrib -> ID MINUSMINUS PONTeVIR .)
+
+
+state 74
+
+    (35) Atrib -> ID LSQUARE Expr . RSQUARE ASSIGN ExprR PONTeVIR
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    RSQUARE         shift and go to state 97
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 75
+
+    (36) Function -> WRITE LROUND PHRASE . RROUND PONTeVIR
+
+    RROUND          shift and go to state 98
+
+
+state 76
+
+    (37) Function -> WRITE LROUND ExprR . RROUND PONTeVIR
+
+    RROUND          shift and go to state 99
+
+
+state 77
+
+    (41) ExprR -> Expr .
+    (42) ExprR -> Expr . EQEQ Expr
+    (43) ExprR -> Expr . NEQ Expr
+    (44) ExprR -> Expr . LT Expr
+    (45) ExprR -> Expr . LE Expr
+    (46) ExprR -> Expr . GT Expr
+    (47) ExprR -> Expr . GE Expr
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    RROUND          reduce using rule 41 (ExprR -> Expr .)
+    AND             reduce using rule 41 (ExprR -> Expr .)
+    OR              reduce using rule 41 (ExprR -> Expr .)
+    PONTeVIR        reduce using rule 41 (ExprR -> Expr .)
+    EQEQ            shift and go to state 100
+    NEQ             shift and go to state 101
+    LT              shift and go to state 102
+    LE              shift and go to state 103
+    GT              shift and go to state 104
+    GE              shift and go to state 105
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 78
+
+    (25) ifStatement -> IF LROUND Condition . RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> IF LROUND Condition . RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+
+    RROUND          shift and go to state 106
+
+
+state 79
+
+    (38) Condition -> ExprR .
+    (39) Condition -> ExprR . AND Condition
+    (40) Condition -> ExprR . OR Condition
+
+    RROUND          reduce using rule 38 (Condition -> ExprR .)
+    AND             shift and go to state 107
+    OR              shift and go to state 108
+
+
+state 80
+
+    (23) Loop -> WHILE LROUND Condition . RROUND LCURLY LstInst RCURLY
+
+    RROUND          shift and go to state 109
+
+
+state 81
+
+    (24) Loop -> FOR LROUND Atrib . Atrib Condition RROUND LCURLY LstInst RCURLY
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+
+    ID              shift and go to state 32
+
+    Atrib                          shift and go to state 110
+
+state 82
+
+    (16) Func -> DEF FUNC_NAME LCURLY . LstInst RETURN ID PONTeVIR RCURLY
+    (17) LstInst -> . Instruction
+    (18) LstInst -> . LstInst Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    LstInst                        shift and go to state 111
+    Instruction                    shift and go to state 27
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 83
+
+    (60) Factor -> ID LSQUARE . NINT RSQUARE
+    (61) Factor -> ID LSQUARE . ID RSQUARE
+
+    NINT            shift and go to state 113
+    ID              shift and go to state 112
+
+
+state 84
+
+    (27) Atrib -> ID ASSIGN Expr PONTeVIR .
+
+    END             reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    ID              reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    WRITE           reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    IF              reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    WHILE           reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    FOR             reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    NINT            reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    LROUND          reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    READ            reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    FUNC_NAME       reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    RETURN          reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+    RCURLY          reduce using rule 27 (Atrib -> ID ASSIGN Expr PONTeVIR .)
+
+
+state 85
+
+    (49) Expr -> Expr PLUS . Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Term                           shift and go to state 114
+    Factor                         shift and go to state 62
+
+state 86
+
+    (50) Expr -> Expr MINUS . Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Term                           shift and go to state 115
+    Factor                         shift and go to state 62
+
+state 87
+
+    (52) Term -> Term MULT . Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Factor                         shift and go to state 116
+
+state 88
+
+    (53) Term -> Term DIV . Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Factor                         shift and go to state 117
+
+state 89
+
+    (54) Term -> Term MOD . Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Factor                         shift and go to state 118
+
+state 90
+
+    (57) Factor -> LROUND MINUS . NINT RROUND
+
+    NINT            shift and go to state 119
+
+
+state 91
+
+    (58) Factor -> READ LROUND . RROUND
+
+    RROUND          shift and go to state 120
+
+
+state 92
+
+    (28) Atrib -> ID PLUSEQ Expr PONTeVIR .
+
+    END             reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    ID              reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    WRITE           reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    IF              reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    WHILE           reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    FOR             reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    NINT            reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    LROUND          reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    READ            reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    FUNC_NAME       reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    RETURN          reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+    RCURLY          reduce using rule 28 (Atrib -> ID PLUSEQ Expr PONTeVIR .)
+
+
+state 93
+
+    (29) Atrib -> ID MINUSEQ Expr PONTeVIR .
+
+    END             reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    ID              reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    WRITE           reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    IF              reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    WHILE           reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    FOR             reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    NINT            reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    LROUND          reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    READ            reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    FUNC_NAME       reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    RETURN          reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+    RCURLY          reduce using rule 29 (Atrib -> ID MINUSEQ Expr PONTeVIR .)
+
+
+state 94
+
+    (30) Atrib -> ID MULTEQ Expr PONTeVIR .
+
+    END             reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    ID              reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    WRITE           reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    IF              reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    WHILE           reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    FOR             reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    NINT            reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    LROUND          reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    READ            reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    FUNC_NAME       reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    RETURN          reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+    RCURLY          reduce using rule 30 (Atrib -> ID MULTEQ Expr PONTeVIR .)
+
+
+state 95
+
+    (31) Atrib -> ID DIVEQ Expr PONTeVIR .
+
+    END             reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    ID              reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    WRITE           reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    IF              reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    WHILE           reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    FOR             reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    NINT            reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    LROUND          reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    READ            reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    FUNC_NAME       reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    RETURN          reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+    RCURLY          reduce using rule 31 (Atrib -> ID DIVEQ Expr PONTeVIR .)
+
+
+state 96
+
+    (32) Atrib -> ID MODEQ Expr PONTeVIR .
+
+    END             reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    ID              reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    WRITE           reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    IF              reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    WHILE           reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    FOR             reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    NINT            reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    LROUND          reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    READ            reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    FUNC_NAME       reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    RETURN          reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+    RCURLY          reduce using rule 32 (Atrib -> ID MODEQ Expr PONTeVIR .)
+
+
+state 97
+
+    (35) Atrib -> ID LSQUARE Expr RSQUARE . ASSIGN ExprR PONTeVIR
+
+    ASSIGN          shift and go to state 121
+
+
+state 98
+
+    (36) Function -> WRITE LROUND PHRASE RROUND . PONTeVIR
+
+    PONTeVIR        shift and go to state 122
+
+
+state 99
+
+    (37) Function -> WRITE LROUND ExprR RROUND . PONTeVIR
+
+    PONTeVIR        shift and go to state 123
+
+
+state 100
+
+    (42) ExprR -> Expr EQEQ . Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 124
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 101
+
+    (43) ExprR -> Expr NEQ . Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 125
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 102
+
+    (44) ExprR -> Expr LT . Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 126
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 103
+
+    (45) ExprR -> Expr LE . Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 127
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 104
+
+    (46) ExprR -> Expr GT . Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 128
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 105
+
+    (47) ExprR -> Expr GE . Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 129
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 106
+
+    (25) ifStatement -> IF LROUND Condition RROUND . THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> IF LROUND Condition RROUND . THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+
+    THEN            shift and go to state 130
+
+
+state 107
+
+    (39) Condition -> ExprR AND . Condition
+    (38) Condition -> . ExprR
+    (39) Condition -> . ExprR AND Condition
+    (40) Condition -> . ExprR OR Condition
+    (41) ExprR -> . Expr
+    (42) ExprR -> . Expr EQEQ Expr
+    (43) ExprR -> . Expr NEQ Expr
+    (44) ExprR -> . Expr LT Expr
+    (45) ExprR -> . Expr LE Expr
+    (46) ExprR -> . Expr GT Expr
+    (47) ExprR -> . Expr GE Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    ExprR                          shift and go to state 79
+    Condition                      shift and go to state 131
+    Expr                           shift and go to state 77
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 108
+
+    (40) Condition -> ExprR OR . Condition
+    (38) Condition -> . ExprR
+    (39) Condition -> . ExprR AND Condition
+    (40) Condition -> . ExprR OR Condition
+    (41) ExprR -> . Expr
+    (42) ExprR -> . Expr EQEQ Expr
+    (43) ExprR -> . Expr NEQ Expr
+    (44) ExprR -> . Expr LT Expr
+    (45) ExprR -> . Expr LE Expr
+    (46) ExprR -> . Expr GT Expr
+    (47) ExprR -> . Expr GE Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    ExprR                          shift and go to state 79
+    Condition                      shift and go to state 132
+    Expr                           shift and go to state 77
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 109
+
+    (23) Loop -> WHILE LROUND Condition RROUND . LCURLY LstInst RCURLY
+
+    LCURLY          shift and go to state 133
+
+
+state 110
+
+    (24) Loop -> FOR LROUND Atrib Atrib . Condition RROUND LCURLY LstInst RCURLY
+    (38) Condition -> . ExprR
+    (39) Condition -> . ExprR AND Condition
+    (40) Condition -> . ExprR OR Condition
+    (41) ExprR -> . Expr
+    (42) ExprR -> . Expr EQEQ Expr
+    (43) ExprR -> . Expr NEQ Expr
+    (44) ExprR -> . Expr LT Expr
+    (45) ExprR -> . Expr LE Expr
+    (46) ExprR -> . Expr GT Expr
+    (47) ExprR -> . Expr GE Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Condition                      shift and go to state 134
+    ExprR                          shift and go to state 79
+    Expr                           shift and go to state 77
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 111
+
+    (16) Func -> DEF FUNC_NAME LCURLY LstInst . RETURN ID PONTeVIR RCURLY
+    (18) LstInst -> LstInst . Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    RETURN          shift and go to state 135
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    Instruction                    shift and go to state 42
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 112
+
+    (61) Factor -> ID LSQUARE ID . RSQUARE
+
+    RSQUARE         shift and go to state 136
+
+
+state 113
+
+    (60) Factor -> ID LSQUARE NINT . RSQUARE
+
+    RSQUARE         shift and go to state 137
+
+
+state 114
+
+    (49) Expr -> Expr PLUS Term .
+    (52) Term -> Term . MULT Factor
+    (53) Term -> Term . DIV Factor
+    (54) Term -> Term . MOD Factor
+
+    PONTeVIR        reduce using rule 49 (Expr -> Expr PLUS Term .)
+    PLUS            reduce using rule 49 (Expr -> Expr PLUS Term .)
+    MINUS           reduce using rule 49 (Expr -> Expr PLUS Term .)
+    RSQUARE         reduce using rule 49 (Expr -> Expr PLUS Term .)
+    EQEQ            reduce using rule 49 (Expr -> Expr PLUS Term .)
+    NEQ             reduce using rule 49 (Expr -> Expr PLUS Term .)
+    LT              reduce using rule 49 (Expr -> Expr PLUS Term .)
+    LE              reduce using rule 49 (Expr -> Expr PLUS Term .)
+    GT              reduce using rule 49 (Expr -> Expr PLUS Term .)
+    GE              reduce using rule 49 (Expr -> Expr PLUS Term .)
+    RROUND          reduce using rule 49 (Expr -> Expr PLUS Term .)
+    AND             reduce using rule 49 (Expr -> Expr PLUS Term .)
+    OR              reduce using rule 49 (Expr -> Expr PLUS Term .)
+    MULT            shift and go to state 87
+    DIV             shift and go to state 88
+    MOD             shift and go to state 89
+
+
+state 115
+
+    (50) Expr -> Expr MINUS Term .
+    (52) Term -> Term . MULT Factor
+    (53) Term -> Term . DIV Factor
+    (54) Term -> Term . MOD Factor
+
+    PONTeVIR        reduce using rule 50 (Expr -> Expr MINUS Term .)
+    PLUS            reduce using rule 50 (Expr -> Expr MINUS Term .)
+    MINUS           reduce using rule 50 (Expr -> Expr MINUS Term .)
+    RSQUARE         reduce using rule 50 (Expr -> Expr MINUS Term .)
+    EQEQ            reduce using rule 50 (Expr -> Expr MINUS Term .)
+    NEQ             reduce using rule 50 (Expr -> Expr MINUS Term .)
+    LT              reduce using rule 50 (Expr -> Expr MINUS Term .)
+    LE              reduce using rule 50 (Expr -> Expr MINUS Term .)
+    GT              reduce using rule 50 (Expr -> Expr MINUS Term .)
+    GE              reduce using rule 50 (Expr -> Expr MINUS Term .)
+    RROUND          reduce using rule 50 (Expr -> Expr MINUS Term .)
+    AND             reduce using rule 50 (Expr -> Expr MINUS Term .)
+    OR              reduce using rule 50 (Expr -> Expr MINUS Term .)
+    MULT            shift and go to state 87
+    DIV             shift and go to state 88
+    MOD             shift and go to state 89
+
+
+state 116
+
+    (52) Term -> Term MULT Factor .
+
+    MULT            reduce using rule 52 (Term -> Term MULT Factor .)
+    DIV             reduce using rule 52 (Term -> Term MULT Factor .)
+    MOD             reduce using rule 52 (Term -> Term MULT Factor .)
+    PONTeVIR        reduce using rule 52 (Term -> Term MULT Factor .)
+    PLUS            reduce using rule 52 (Term -> Term MULT Factor .)
+    MINUS           reduce using rule 52 (Term -> Term MULT Factor .)
+    RSQUARE         reduce using rule 52 (Term -> Term MULT Factor .)
+    EQEQ            reduce using rule 52 (Term -> Term MULT Factor .)
+    NEQ             reduce using rule 52 (Term -> Term MULT Factor .)
+    LT              reduce using rule 52 (Term -> Term MULT Factor .)
+    LE              reduce using rule 52 (Term -> Term MULT Factor .)
+    GT              reduce using rule 52 (Term -> Term MULT Factor .)
+    GE              reduce using rule 52 (Term -> Term MULT Factor .)
+    RROUND          reduce using rule 52 (Term -> Term MULT Factor .)
+    AND             reduce using rule 52 (Term -> Term MULT Factor .)
+    OR              reduce using rule 52 (Term -> Term MULT Factor .)
+
+
+state 117
+
+    (53) Term -> Term DIV Factor .
+
+    MULT            reduce using rule 53 (Term -> Term DIV Factor .)
+    DIV             reduce using rule 53 (Term -> Term DIV Factor .)
+    MOD             reduce using rule 53 (Term -> Term DIV Factor .)
+    PONTeVIR        reduce using rule 53 (Term -> Term DIV Factor .)
+    PLUS            reduce using rule 53 (Term -> Term DIV Factor .)
+    MINUS           reduce using rule 53 (Term -> Term DIV Factor .)
+    RSQUARE         reduce using rule 53 (Term -> Term DIV Factor .)
+    EQEQ            reduce using rule 53 (Term -> Term DIV Factor .)
+    NEQ             reduce using rule 53 (Term -> Term DIV Factor .)
+    LT              reduce using rule 53 (Term -> Term DIV Factor .)
+    LE              reduce using rule 53 (Term -> Term DIV Factor .)
+    GT              reduce using rule 53 (Term -> Term DIV Factor .)
+    GE              reduce using rule 53 (Term -> Term DIV Factor .)
+    RROUND          reduce using rule 53 (Term -> Term DIV Factor .)
+    AND             reduce using rule 53 (Term -> Term DIV Factor .)
+    OR              reduce using rule 53 (Term -> Term DIV Factor .)
+
+
+state 118
+
+    (54) Term -> Term MOD Factor .
+
+    MULT            reduce using rule 54 (Term -> Term MOD Factor .)
+    DIV             reduce using rule 54 (Term -> Term MOD Factor .)
+    MOD             reduce using rule 54 (Term -> Term MOD Factor .)
+    PONTeVIR        reduce using rule 54 (Term -> Term MOD Factor .)
+    PLUS            reduce using rule 54 (Term -> Term MOD Factor .)
+    MINUS           reduce using rule 54 (Term -> Term MOD Factor .)
+    RSQUARE         reduce using rule 54 (Term -> Term MOD Factor .)
+    EQEQ            reduce using rule 54 (Term -> Term MOD Factor .)
+    NEQ             reduce using rule 54 (Term -> Term MOD Factor .)
+    LT              reduce using rule 54 (Term -> Term MOD Factor .)
+    LE              reduce using rule 54 (Term -> Term MOD Factor .)
+    GT              reduce using rule 54 (Term -> Term MOD Factor .)
+    GE              reduce using rule 54 (Term -> Term MOD Factor .)
+    RROUND          reduce using rule 54 (Term -> Term MOD Factor .)
+    AND             reduce using rule 54 (Term -> Term MOD Factor .)
+    OR              reduce using rule 54 (Term -> Term MOD Factor .)
+
+
+state 119
+
+    (57) Factor -> LROUND MINUS NINT . RROUND
+
+    RROUND          shift and go to state 138
+
+
+state 120
+
+    (58) Factor -> READ LROUND RROUND .
+
+    MULT            reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    DIV             reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    MOD             reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    PONTeVIR        reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    PLUS            reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    MINUS           reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    RSQUARE         reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    EQEQ            reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    NEQ             reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    LT              reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    LE              reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    GT              reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    GE              reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    RROUND          reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    AND             reduce using rule 58 (Factor -> READ LROUND RROUND .)
+    OR              reduce using rule 58 (Factor -> READ LROUND RROUND .)
+
+
+state 121
+
+    (35) Atrib -> ID LSQUARE Expr RSQUARE ASSIGN . ExprR PONTeVIR
+    (41) ExprR -> . Expr
+    (42) ExprR -> . Expr EQEQ Expr
+    (43) ExprR -> . Expr NEQ Expr
+    (44) ExprR -> . Expr LT Expr
+    (45) ExprR -> . Expr LE Expr
+    (46) ExprR -> . Expr GT Expr
+    (47) ExprR -> . Expr GE Expr
+    (48) Expr -> . Term
+    (49) Expr -> . Expr PLUS Term
+    (50) Expr -> . Expr MINUS Term
+    (51) Term -> . Factor
+    (52) Term -> . Term MULT Factor
+    (53) Term -> . Term DIV Factor
+    (54) Term -> . Term MOD Factor
+    (55) Factor -> . ID
+    (56) Factor -> . NINT
+    (57) Factor -> . LROUND MINUS NINT RROUND
+    (58) Factor -> . READ LROUND RROUND
+    (59) Factor -> . FUNC_NAME
+    (60) Factor -> . ID LSQUARE NINT RSQUARE
+    (61) Factor -> . ID LSQUARE ID RSQUARE
+
+    ID              shift and go to state 59
+    NINT            shift and go to state 63
+    LROUND          shift and go to state 64
+    READ            shift and go to state 65
+    FUNC_NAME       shift and go to state 66
+
+    Expr                           shift and go to state 77
+    ExprR                          shift and go to state 139
+    Term                           shift and go to state 61
+    Factor                         shift and go to state 62
+
+state 122
+
+    (36) Function -> WRITE LROUND PHRASE RROUND PONTeVIR .
+
+    END             reduce using rule 36 (Function -> WRITE LROUND PHRASE RROUND PONTeVIR .)
+    ID              reduce using rule 36 (Function -> WRITE LROUND PHRASE RROUND PONTeVIR .)
+    WRITE           reduce using rule 36 (Function -> WRITE LROUND PHRASE RROUND PONTeVIR .)
+    IF              reduce using rule 36 (Function -> WRITE LROUND PHRASE RROUND PONTeVIR .)
+    WHILE           reduce using rule 36 (Function -> WRITE LROUND PHRASE RROUND PONTeVIR .)
+    FOR             reduce using rule 36 (Function -> WRITE LROUND PHRASE RROUND PONTeVIR .)
+    RETURN          reduce using rule 36 (Function -> WRITE LROUND PHRASE RROUND PONTeVIR .)
+    RCURLY          reduce using rule 36 (Function -> WRITE LROUND PHRASE RROUND PONTeVIR .)
+
+
+state 123
+
+    (37) Function -> WRITE LROUND ExprR RROUND PONTeVIR .
+
+    END             reduce using rule 37 (Function -> WRITE LROUND ExprR RROUND PONTeVIR .)
+    ID              reduce using rule 37 (Function -> WRITE LROUND ExprR RROUND PONTeVIR .)
+    WRITE           reduce using rule 37 (Function -> WRITE LROUND ExprR RROUND PONTeVIR .)
+    IF              reduce using rule 37 (Function -> WRITE LROUND ExprR RROUND PONTeVIR .)
+    WHILE           reduce using rule 37 (Function -> WRITE LROUND ExprR RROUND PONTeVIR .)
+    FOR             reduce using rule 37 (Function -> WRITE LROUND ExprR RROUND PONTeVIR .)
+    RETURN          reduce using rule 37 (Function -> WRITE LROUND ExprR RROUND PONTeVIR .)
+    RCURLY          reduce using rule 37 (Function -> WRITE LROUND ExprR RROUND PONTeVIR .)
+
+
+state 124
+
+    (42) ExprR -> Expr EQEQ Expr .
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    RROUND          reduce using rule 42 (ExprR -> Expr EQEQ Expr .)
+    AND             reduce using rule 42 (ExprR -> Expr EQEQ Expr .)
+    OR              reduce using rule 42 (ExprR -> Expr EQEQ Expr .)
+    PONTeVIR        reduce using rule 42 (ExprR -> Expr EQEQ Expr .)
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 125
+
+    (43) ExprR -> Expr NEQ Expr .
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    RROUND          reduce using rule 43 (ExprR -> Expr NEQ Expr .)
+    AND             reduce using rule 43 (ExprR -> Expr NEQ Expr .)
+    OR              reduce using rule 43 (ExprR -> Expr NEQ Expr .)
+    PONTeVIR        reduce using rule 43 (ExprR -> Expr NEQ Expr .)
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 126
+
+    (44) ExprR -> Expr LT Expr .
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    RROUND          reduce using rule 44 (ExprR -> Expr LT Expr .)
+    AND             reduce using rule 44 (ExprR -> Expr LT Expr .)
+    OR              reduce using rule 44 (ExprR -> Expr LT Expr .)
+    PONTeVIR        reduce using rule 44 (ExprR -> Expr LT Expr .)
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 127
+
+    (45) ExprR -> Expr LE Expr .
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    RROUND          reduce using rule 45 (ExprR -> Expr LE Expr .)
+    AND             reduce using rule 45 (ExprR -> Expr LE Expr .)
+    OR              reduce using rule 45 (ExprR -> Expr LE Expr .)
+    PONTeVIR        reduce using rule 45 (ExprR -> Expr LE Expr .)
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 128
+
+    (46) ExprR -> Expr GT Expr .
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    RROUND          reduce using rule 46 (ExprR -> Expr GT Expr .)
+    AND             reduce using rule 46 (ExprR -> Expr GT Expr .)
+    OR              reduce using rule 46 (ExprR -> Expr GT Expr .)
+    PONTeVIR        reduce using rule 46 (ExprR -> Expr GT Expr .)
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 129
+
+    (47) ExprR -> Expr GE Expr .
+    (49) Expr -> Expr . PLUS Term
+    (50) Expr -> Expr . MINUS Term
+
+    RROUND          reduce using rule 47 (ExprR -> Expr GE Expr .)
+    AND             reduce using rule 47 (ExprR -> Expr GE Expr .)
+    OR              reduce using rule 47 (ExprR -> Expr GE Expr .)
+    PONTeVIR        reduce using rule 47 (ExprR -> Expr GE Expr .)
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+
+
+state 130
+
+    (25) ifStatement -> IF LROUND Condition RROUND THEN . LCURLY LstInst RCURLY
+    (26) ifStatement -> IF LROUND Condition RROUND THEN . LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+
+    LCURLY          shift and go to state 140
+
+
+state 131
+
+    (39) Condition -> ExprR AND Condition .
+
+    RROUND          reduce using rule 39 (Condition -> ExprR AND Condition .)
+
+
+state 132
+
+    (40) Condition -> ExprR OR Condition .
+
+    RROUND          reduce using rule 40 (Condition -> ExprR OR Condition .)
+
+
+state 133
+
+    (23) Loop -> WHILE LROUND Condition RROUND LCURLY . LstInst RCURLY
+    (17) LstInst -> . Instruction
+    (18) LstInst -> . LstInst Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    LstInst                        shift and go to state 141
+    Instruction                    shift and go to state 27
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 134
+
+    (24) Loop -> FOR LROUND Atrib Atrib Condition . RROUND LCURLY LstInst RCURLY
+
+    RROUND          shift and go to state 142
+
+
+state 135
+
+    (16) Func -> DEF FUNC_NAME LCURLY LstInst RETURN . ID PONTeVIR RCURLY
+
+    ID              shift and go to state 143
+
+
+state 136
+
+    (61) Factor -> ID LSQUARE ID RSQUARE .
+
+    MULT            reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    DIV             reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    MOD             reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    PONTeVIR        reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    PLUS            reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    MINUS           reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    RSQUARE         reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    EQEQ            reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    NEQ             reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    LT              reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    LE              reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    GT              reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    GE              reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    RROUND          reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    AND             reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+    OR              reduce using rule 61 (Factor -> ID LSQUARE ID RSQUARE .)
+
+
+state 137
+
+    (60) Factor -> ID LSQUARE NINT RSQUARE .
+
+    MULT            reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    DIV             reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    MOD             reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    PONTeVIR        reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    PLUS            reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    MINUS           reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    RSQUARE         reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    EQEQ            reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    NEQ             reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    LT              reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    LE              reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    GT              reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    GE              reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    RROUND          reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    AND             reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+    OR              reduce using rule 60 (Factor -> ID LSQUARE NINT RSQUARE .)
+
+
+state 138
+
+    (57) Factor -> LROUND MINUS NINT RROUND .
+
+    MULT            reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    DIV             reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    MOD             reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    PONTeVIR        reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    PLUS            reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    MINUS           reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    RSQUARE         reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    EQEQ            reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    NEQ             reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    LT              reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    LE              reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    GT              reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    GE              reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    RROUND          reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    AND             reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+    OR              reduce using rule 57 (Factor -> LROUND MINUS NINT RROUND .)
+
+
+state 139
+
+    (35) Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR . PONTeVIR
+
+    PONTeVIR        shift and go to state 144
+
+
+state 140
+
+    (25) ifStatement -> IF LROUND Condition RROUND THEN LCURLY . LstInst RCURLY
+    (26) ifStatement -> IF LROUND Condition RROUND THEN LCURLY . LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (17) LstInst -> . Instruction
+    (18) LstInst -> . LstInst Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    LstInst                        shift and go to state 145
+    Instruction                    shift and go to state 27
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 141
+
+    (23) Loop -> WHILE LROUND Condition RROUND LCURLY LstInst . RCURLY
+    (18) LstInst -> LstInst . Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    RCURLY          shift and go to state 146
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    Instruction                    shift and go to state 42
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 142
+
+    (24) Loop -> FOR LROUND Atrib Atrib Condition RROUND . LCURLY LstInst RCURLY
+
+    LCURLY          shift and go to state 147
+
+
+state 143
+
+    (16) Func -> DEF FUNC_NAME LCURLY LstInst RETURN ID . PONTeVIR RCURLY
+
+    PONTeVIR        shift and go to state 148
+
+
+state 144
+
+    (35) Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .
+
+    END             reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    ID              reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    WRITE           reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    IF              reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    WHILE           reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    FOR             reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    NINT            reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    LROUND          reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    READ            reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    FUNC_NAME       reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    RETURN          reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+    RCURLY          reduce using rule 35 (Atrib -> ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR .)
+
+
+state 145
+
+    (25) ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst . RCURLY
+    (26) ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst . RCURLY ELSE LCURLY LstInst RCURLY
+    (18) LstInst -> LstInst . Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    RCURLY          shift and go to state 149
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    Instruction                    shift and go to state 42
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 146
+
+    (23) Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .
+
+    END             reduce using rule 23 (Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .)
+    ID              reduce using rule 23 (Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .)
+    WRITE           reduce using rule 23 (Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .)
+    IF              reduce using rule 23 (Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .)
+    WHILE           reduce using rule 23 (Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .)
+    FOR             reduce using rule 23 (Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .)
+    RETURN          reduce using rule 23 (Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .)
+    RCURLY          reduce using rule 23 (Loop -> WHILE LROUND Condition RROUND LCURLY LstInst RCURLY .)
+
+
+state 147
+
+    (24) Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY . LstInst RCURLY
+    (17) LstInst -> . Instruction
+    (18) LstInst -> . LstInst Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    Atrib                          shift and go to state 28
+    LstInst                        shift and go to state 150
+    Instruction                    shift and go to state 27
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 148
+
+    (16) Func -> DEF FUNC_NAME LCURLY LstInst RETURN ID PONTeVIR . RCURLY
+
+    RCURLY          shift and go to state 151
+
+
+state 149
+
+    (25) ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .
+    (26) ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY . ELSE LCURLY LstInst RCURLY
+
+    END             reduce using rule 25 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .)
+    ID              reduce using rule 25 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .)
+    WRITE           reduce using rule 25 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .)
+    IF              reduce using rule 25 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .)
+    WHILE           reduce using rule 25 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .)
+    FOR             reduce using rule 25 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .)
+    RETURN          reduce using rule 25 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .)
+    RCURLY          reduce using rule 25 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY .)
+    ELSE            shift and go to state 152
+
+
+state 150
+
+    (24) Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst . RCURLY
+    (18) LstInst -> LstInst . Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    RCURLY          shift and go to state 153
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    Atrib                          shift and go to state 28
+    Instruction                    shift and go to state 42
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 151
+
+    (16) Func -> DEF FUNC_NAME LCURLY LstInst RETURN ID PONTeVIR RCURLY .
+
+    DOLLAR          reduce using rule 16 (Func -> DEF FUNC_NAME LCURLY LstInst RETURN ID PONTeVIR RCURLY .)
+    DEF             reduce using rule 16 (Func -> DEF FUNC_NAME LCURLY LstInst RETURN ID PONTeVIR RCURLY .)
+
+
+state 152
+
+    (26) ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE . LCURLY LstInst RCURLY
+
+    LCURLY          shift and go to state 154
+
+
+state 153
+
+    (24) Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .
+
+    END             reduce using rule 24 (Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .)
+    ID              reduce using rule 24 (Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .)
+    WRITE           reduce using rule 24 (Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .)
+    IF              reduce using rule 24 (Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .)
+    WHILE           reduce using rule 24 (Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .)
+    FOR             reduce using rule 24 (Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .)
+    RETURN          reduce using rule 24 (Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .)
+    RCURLY          reduce using rule 24 (Loop -> FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY .)
+
+
+state 154
+
+    (26) ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY . LstInst RCURLY
+    (17) LstInst -> . Instruction
+    (18) LstInst -> . LstInst Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    LstInst                        shift and go to state 155
+    Instruction                    shift and go to state 27
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 155
+
+    (26) ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst . RCURLY
+    (18) LstInst -> LstInst . Instruction
+    (19) Instruction -> . Atrib
+    (20) Instruction -> . Function
+    (21) Instruction -> . ifStatement
+    (22) Instruction -> . Loop
+    (27) Atrib -> . ID ASSIGN Expr PONTeVIR
+    (28) Atrib -> . ID PLUSEQ Expr PONTeVIR
+    (29) Atrib -> . ID MINUSEQ Expr PONTeVIR
+    (30) Atrib -> . ID MULTEQ Expr PONTeVIR
+    (31) Atrib -> . ID DIVEQ Expr PONTeVIR
+    (32) Atrib -> . ID MODEQ Expr PONTeVIR
+    (33) Atrib -> . ID PLUSPLUS PONTeVIR
+    (34) Atrib -> . ID MINUSMINUS PONTeVIR
+    (35) Atrib -> . ID LSQUARE Expr RSQUARE ASSIGN ExprR PONTeVIR
+    (36) Function -> . WRITE LROUND PHRASE RROUND PONTeVIR
+    (37) Function -> . WRITE LROUND ExprR RROUND PONTeVIR
+    (25) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY
+    (26) ifStatement -> . IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY
+    (23) Loop -> . WHILE LROUND Condition RROUND LCURLY LstInst RCURLY
+    (24) Loop -> . FOR LROUND Atrib Atrib Condition RROUND LCURLY LstInst RCURLY
+
+    RCURLY          shift and go to state 156
+    ID              shift and go to state 32
+    WRITE           shift and go to state 33
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+
+    Instruction                    shift and go to state 42
+    Atrib                          shift and go to state 28
+    Function                       shift and go to state 29
+    ifStatement                    shift and go to state 30
+    Loop                           shift and go to state 31
+
+state 156
+
+    (26) ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .
+
+    END             reduce using rule 26 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .)
+    ID              reduce using rule 26 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .)
+    WRITE           reduce using rule 26 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .)
+    IF              reduce using rule 26 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .)
+    WHILE           reduce using rule 26 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .)
+    FOR             reduce using rule 26 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .)
+    RETURN          reduce using rule 26 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .)
+    RCURLY          reduce using rule 26 (ifStatement -> IF LROUND Condition RROUND THEN LCURLY LstInst RCURLY ELSE LCURLY LstInst RCURLY .)
+

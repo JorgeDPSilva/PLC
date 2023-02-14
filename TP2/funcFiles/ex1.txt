@@ -1,0 +1,11 @@
+DECLARATIONS {
+int a,b,c,d;
+}
+BEGIN
+write("Write the square values");
+a = read();
+b = read();
+c = read();
+d = read();
+if ( a == b && a == c && a == d) then {write("SQUARE");} else {write("NOT SQUARE");}
+END

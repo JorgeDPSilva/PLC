@@ -1,0 +1,18 @@
+DECLARATIONS{
+int quant, aux, i, count;
+}
+BEGIN
+i = 0;
+count = 1;
+write("Indique o numero de inteiros");                               
+quant = read();
+
+FOR ( i = 0; i++; i < quant) {
+    write("Insira o digito:");
+    aux = read();
+    count = count * aux;
+}
+
+write("Produtorio = ");
+write(count);
+END

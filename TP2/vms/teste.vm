@@ -1,0 +1,31 @@
+  PUSHN 24
+
+  START
+
+  main: NOP
+
+  PUSHI 6
+
+  PUSHG 0
+
+  PUSHG 2
+
+  ADD
+
+  MUL
+
+  WRITEI
+
+  ......
+
+  STOP
+
+  fun: NOP
+
+  READ
+
+  ATOI
+
+  STOREG 0
+
+  RETURN

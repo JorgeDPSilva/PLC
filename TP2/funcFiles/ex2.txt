@@ -1,0 +1,20 @@
+DECLARATIONS{
+int lido,res,i,j;
+}                   
+BEGIN
+write("escreva o tamanho da sequencia");                               
+i = read();                            
+
+write("Insira um inteiro");
+res = read();
+j = 1;
+while( j < i) {
+    write("Insira um inteiro");
+    lido = read();
+    if (lido < res) then {
+        res = lido;
+    }
+    j++;
+}
+write(res);
+END

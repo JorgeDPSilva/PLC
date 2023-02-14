@@ -1,0 +1,24 @@
+DECLARATIONS{
+    int res, base, expoente, i;
+}
+
+FUNCTIONS $ 
+    def potencia(){
+        base = 0;
+        res = 1;
+        write("Insira a base");
+        base = read();
+        write("Insira o expoente");
+        expoente = read();
+
+        for(i = 0; i++; i < expoente){
+            res *= base;
+        }
+        
+        return res;
+    }
+$
+
+BEGIN
+res = potencia();
+END

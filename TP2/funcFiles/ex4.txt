@@ -1,0 +1,19 @@
+DECLARATIONS {
+int i, quant, store, count;
+}
+BEGIN
+i = 0;
+count = 0;
+write("Indique quantos numeros vai inserir");
+quant = read();
+while (i < quant){
+    write("Insira um digito");
+    store = read();
+    if (store % 2 == 1) then {
+        count = count + 1;
+        write(store);
+    }
+    i = i + 1;
+}
+write(count);
+END
